@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    //Avoid onclick directly in body elements
+    // document.getElementById("owl").onclick = function(){
+    //     alert("You clicked on the owl image");
+    // }
+    // onclick does not give us more features . So use event Listener
+
+
+    // attachEvent() was used previously
+    // jQuery - on 
+
+
+    //type , timestamps , defaultPrevented
+    //target, toElement, srcElement, currentTarget
+    // clientX, clientY, screenX, screenY
+    //altkey, ctrlkey, shiftkey, keyCode
+
+    //mostly we get browser and environment events in event listener event
+
+    // Event Propagation -> Event Bubbling or Event Capturing
+    //Bubble niche se upar jata hai. Event propagation mein inner element se outer element pe jayga
+
+    // If default is false then Event Bubbling else Event Capturing
+
+    // document.getElementById("images").addEventListener('click',function(e){
+    //     console.log("Clicked inside the UI");
+    // },false) //false is default. This is Event Bubbling
+    
+    // document.getElementById("owl").addEventListener('click',function(e){
+    //     console.log("Owl Clicked");
+    // }) // As false is default we can also not using it
+    // Console Output when clicked on owl:
+    // Owl Clicked
+    // Clicked inside the UI
+
+
+    // document.getElementById("images").addEventListener('click',function(e){
+    //     console.log("Clicked inside the UI");
+    // },true) //True so. This is Event Capturing
+    
+    // document.getElementById("owl").addEventListener('click',function(e){
+    //     console.log("Owl Clicked");
+    // },true)
+    // Console Output when clicked on owl:
+    // Clicked inside the UI
+    // Owl Clicked
+
+    document.getElementById("images").addEventListener('click',function(e){
+        console.log("Clicked inside the UI");
+    },false)
+    
+    document.getElementById("owl").addEventListener('click',function(e){
+        console.log("Owl Clicked");
+        e.stopPropagation() // Prevents the Event from bubbling and move to the upper element
+    }) 
+    // Console Output when clicked on owl :
+    // Owl Clicked
+ 
+
+    //Example of PreventDefault
+
+    document.getElementById('google').addEventListener('click',function(e){
+        e.preventDefault()
+        e.stopPropagation()
+        console.log('Google clicked');
+    }, false)
+    // Console Output when clicked on google (Before adding e.stopPropagation()) :
+    // google Clicked
+    // clicked inside the UI
+
+    // Console Output when clicked on google (After adding e.stopPropagation()) :
+    // google Clicked
+
+    
+
+</script>
+</html>
