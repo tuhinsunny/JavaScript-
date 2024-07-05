@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Code</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    //setTimeout(function(){
+    //     console.log("Tuhin");
+    // },2000) // After 2s the name will be printed
+
+    // Another way:
+    const sayTuhin = function(){
+        console.log("Tuhin");
+    }
+    setTimeout(sayTuhin,5000)
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "Best JS Series"
+    }
+    const changeMe = setTimeout(changeText,3000) // the h1 will change after 3s
+
+    // clearTimeout(changeMe) // This will stop the referenced setTimeOut function
+
+    document.querySelector('#stop').addEventListener('click',function(){
+        clearTimeout(changeMe)
+        console.log("Stopped");
+        // When the button is pressed, the setTimeOut function changeMe will be stopped
+    })
+
+</script>
+</html>
