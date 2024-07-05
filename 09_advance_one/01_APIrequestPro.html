@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project</title>
+    <style>
+        .card {
+            width: 500px;
+            height: 600px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="" alt="Avatar">
+        <div class="container">
+            <h4 id="dataName"></h4>
+            <p id="followers"></p>
+            <button id="btn">Generate Data</button>
+        </div>
+    </div>
+
+</body>
+<script>
+    let followers;
+    let name;
+    let avatar_link;
+    const requestUrl = "https://api.github.com/users/tuhinsunny";
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            const data = JSON.parse(xhr.responseText);
+            // console.log(data);
+            avatar_link = data.avatar_url;
+            name = data.name;
+            followers = data.followers;
+        }
+    }
+    xhr.send()
+    const dataName = document.getElementById('dataName');
+    const img = document.querySelector(".card img")
+    const follow = document.querySelector("#followers")
+    document.getElementById("btn").addEventListener("click", function () {
+        console.log('clicked');
+        dataName.innerHTML = name
+        img.setAttribute("src", avatar_link)
+        follow.innerHTML = followers
+        this.remove()
+    })
+</script>
+
+</html>
