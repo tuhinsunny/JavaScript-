@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    //Mini Project : When start it pressed it should display and when stop is pressed it should stop
+    const start =document.querySelector("#start");
+    const stop = document.querySelector("#stop");
+    let intervalId;
+    start.addEventListener("click",function(){
+        const sayDate = function(str){
+        console.log(str,Date.now());
+    }
+    intervalId = setInterval(sayDate,1000,"hi")
+    })
+    stop.addEventListener("click",function(){
+        clearInterval(intervalId);
+    })
+
+</script>
+</html>
